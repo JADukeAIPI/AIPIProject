@@ -17,12 +17,13 @@ def get_end_date(number_days):
 
 end_date = get_end_date(90)
 
-def get_events(start_date = today_date, end_date = get_end_date(90)):
+def get_events(start_date = today_date, end_date = get_end_date(90), query_string = None):
     '''
     Scrapes data from Creative Loafing, Google events, and Discover Atlanta for the next time period and organizes the data in a DataFrame
 
     Inputs:
         Date range in terms of strings of YYYY-MM-DD for today and future date; default is today to today + 90 days
+        Query string (default None) which will perform .query(query_string) on the dataframe
 
     Returns:
         events_df(DataFrame): DataFrame containing the scraped data for all upcoming events
@@ -64,6 +65,9 @@ def get_events(start_date = today_date, end_date = get_end_date(90)):
     event_df['Dates'] = pd.to_datetime(event_df['Dates'])
     event_df = event_df.sort_values(by='Dates', ascending=True).reset_index(drop=True)
     event_df = event_df[(event_df['Dates'] > start_date) & (event_df['Dates'] <= end_date)]
+    #filter by query string if provided
+    if query_string is not None:
+      event_df = event_df.query(query_string, engine='python')
+    
     return event_df
 
-#events_data_df = get_events('2022-11-20', '2023-02-03')
