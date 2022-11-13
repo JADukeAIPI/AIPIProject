@@ -1,4 +1,3 @@
-#!pip install google-search-results
 
 from bs4 import BeautifulSoup
 import pandas as pd
@@ -6,7 +5,6 @@ import numpy as np
 import requests
 import matplotlib.pyplot as plt
 from datetime import datetime, timedelta
-from serpapi import GoogleSearch
 import json
 
 today_date = datetime.today().strftime('%Y-%m-%d')
@@ -31,21 +29,21 @@ def get_events(start_date = today_date, end_date = get_end_date(90)):
     '''
     
     # URLS to search  
-    url = 'https://creativeloafing.com/atlanta-events/this-month' 
-    url2 ='https://www.google.com/search?q=atlanta+convention+center+events&oq=atlanta+convention+center+events&aqs=chrome..69i57j0i512j0i22i30l6.4881j0j7&sourceid=chrome&ie=UTF-8&ibp=htl;events&rciv=evn&sa=X&ved=2ahUKEwjIsY_c4J_7AhX-lWoFHWBFBBcQ66QDKAZ6BAgIEAw#htichips=date:month&htischips=date;month&htidocid=L2F1dGhvcml0eS9ob3Jpem9uL2NsdXN0ZXJlZF9ldmVudC8yMDIyLTExLTExfDI1MTcwNDI2NDQ0NjM3MjA4ODg%3D&htivrt=events&fpstate=tldetail'
+    #url = 'https://creativeloafing.com/atlanta-events/this-month' 
+    #url2 ='https://www.google.com/search?q=atlanta+convention+center+events&oq=atlanta+convention+center+events&aqs=chrome..69i57j0i512j0i22i30l6.4881j0j7&sourceid=chrome&ie=UTF-8&ibp=htl;events&rciv=evn&sa=X&ved=2ahUKEwjIsY_c4J_7AhX-lWoFHWBFBBcQ66QDKAZ6BAgIEAw#htichips=date:month&htischips=date;month&htidocid=L2F1dGhvcml0eS9ob3Jpem9uL2NsdXN0ZXJlZF9ldmVudC8yMDIyLTExLTExfDI1MTcwNDI2NDQ0NjM3MjA4ODg%3D&htivrt=events&fpstate=tldetail'
     url3 = 'https://discoveratlanta.com/events/all/?startdate='+today_date+'&enddate='+(end_date)+'&date_sort=this-month'
-    url4 = 'https://www.google.com/search?lei=3P9qY9XjLZGvqtsPpuOckAE&q=atlanta+convention+calendar+2022&biw=1440&bih=764&dpr=2&ibp=htl;events&rciv=evn&sa=X&ved=2ahUKEwil94el95_7AhUZibAFHSDpDQkQ8eoFKAJ6BAgJEA8#htivrt=events&htidocid=L2F1dGhvcml0eS9ob3Jpem9uL2NsdXN0ZXJlZF9ldmVudC8yMDIyLTExLTExfDI1MTcwNDI2NDQ0NjM3MjA4ODg%3D&fpstate=tldetail'
+    #url4 = 'https://www.google.com/search?lei=3P9qY9XjLZGvqtsPpuOckAE&q=atlanta+convention+calendar+2022&biw=1440&bih=764&dpr=2&ibp=htl;events&rciv=evn&sa=X&ved=2ahUKEwil94el95_7AhUZibAFHSDpDQkQ8eoFKAJ6BAgJEA8#htivrt=events&htidocid=L2F1dGhvcml0eS9ob3Jpem9uL2NsdXN0ZXJlZF9ldmVudC8yMDIyLTExLTExfDI1MTcwNDI2NDQ0NjM3MjA4ODg%3D&fpstate=tldetail'
 
     # Request the page and use BeautifulSoup to extract the contents
-    page = requests.get(url)
-    page2 = requests.get(url2)
+    #page = requests.get(url)
+    #page2 = requests.get(url2)
     page3 = requests.get(url3)
-    page4 = requests.get(url4)
+    #page4 = requests.get(url4)
     
-    soup = BeautifulSoup(page.content, 'html.parser')
-    soup2 = BeautifulSoup(page2.content, 'html.parser')
+    #soup = BeautifulSoup(page.content, 'html.parser')
+    #soup2 = BeautifulSoup(page2.content, 'html.parser')
     soup3 = BeautifulSoup(page3.content, 'html.parser')
-    soup4 = BeautifulSoup(page4.content, 'html.parser')
+    #soup4 = BeautifulSoup(page4.content, 'html.parser')
 
     #for now, just using url3
     events = soup3.find_all('article', class_='listing')
@@ -68,4 +66,4 @@ def get_events(start_date = today_date, end_date = get_end_date(90)):
     event_df = event_df[(event_df['Dates'] > start_date) & (event_df['Dates'] <= end_date)]
     return event_df
 
-events_data_df = get_events('2022-11-20', '2023-02-03')
+#events_data_df = get_events('2022-11-20', '2023-02-03')
