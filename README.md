@@ -34,7 +34,7 @@ In order to install the project correctly, you will only need to interact with 1
 
 How to Use the Project:
 
-After you've successfully run the db.ipynmb notebook and opened the web app, it's a very straight forward process. Select your desired date range within the streamlite application application to see our estimate of demand needs in terms of car rentals.
+After you've successfully run the db.ipynmb notebook and opened the web app, it's a very straight forward process. Select your desired date range within the streamlite application to see our estimate of demand needs in terms of car rentals.
 
 Credits:
 

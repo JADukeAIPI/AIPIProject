@@ -12,7 +12,7 @@ def api_request():
     querystring = {"drop_off_longitude":"-84.419853","currency":"USD","sort_by":"recommended","drop_off_datetime":"2023-01-03 19:00:00","drop_off_latitude":"33.640411","from_country":"it","pick_up_longitude":"-84.419853","locale":"en-gb","pick_up_datetime":"2023-01-01 19:00:00","pick_up_latitude":"33.640411"}
 
     headers = {
-	"X-RapidAPI-Key": "8bbb18c5b5mshcb2649ca8814f86p1d30a3jsn5a338ac42c22",
+	"X-RapidAPI-Key": "3662501eefmsh25ecd880f1ff146p15a604jsn7f50708cd702",
 	"X-RapidAPI-Host": "booking-com.p.rapidapi.com"
     }
 
@@ -35,8 +35,8 @@ def clean_api_df(data_df):
   vehicle_groups_to_keep = ['Luxury']
   df_cleaned=df_cleaned[columns_to_keep]
   df_cleaned=df_cleaned[df_cleaned['vehicle_info.group'].isin(vehicle_groups_to_keep)]
-  df_cleaned.rename(columns={'vehicle_info.v_id':'Vehicle_id', 'vehicle_info.v_name': 'Vehicle Name', 'vehicle_info.group': 'Category', 'pricing_info.base_price': 'Base Price','vehicle_info.transmission': 'Transmission', 'route_info.dropoff.city': 'Dropoff City', 'route_info.pickup.city': 'Pickup City'}, inplace=True)
-  df_cleaned.sort_values(by='Base Price', ascending=False, inplace=True)
+  df_cleaned.rename(columns={'vehicle_info.v_id':'Vehicle_id', 'vehicle_info.v_name': 'Vehicle_Name', 'vehicle_info.group': 'Category', 'pricing_info.base_price': 'Base_Price','vehicle_info.transmission': 'Transmission', 'route_info.dropoff.city': 'Dropoff_City', 'route_info.pickup.city': 'Pickup_City'}, inplace=True)
+  df_cleaned.sort_values(by='Base_Price', ascending=False, inplace=True)
   return df_cleaned
 
 df_cleaned = clean_api_df(df2)
