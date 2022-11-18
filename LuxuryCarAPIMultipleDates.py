@@ -20,7 +20,7 @@ def get_booking_data(start_date, end_date):
 	querystring = {"drop_off_longitude":"-84.419853","currency":"USD","sort_by":"recommended","drop_off_datetime":end_date + ' 15:00:00',"drop_off_latitude":"33.640411","from_country":"it","pick_up_longitude":"-84.419853","locale":"en-gb","pick_up_datetime":start_date + " 15:00:00","pick_up_latitude":"33.640411"}
 
 	headers = {
-		"X-RapidAPI-Key": "3662501eefmsh25ecd880f1ff146p15a604jsn7f50708cd702",
+		"X-RapidAPI-Key": "e2bfcb999amshb4c19de5b3c019ap1f1c11jsn1d16c1bf87d9",
 		"X-RapidAPI-Host": "booking-com.p.rapidapi.com"}
 
 	response = requests.request("GET", url, headers=headers, params=querystring)
@@ -68,7 +68,7 @@ df_next_60_days.to_pickle('Cars_next_60_days_df.pkl')
 
 
 luxury_cars_next_60_days = df_next_60_days.copy()
-luxury_cars_next_60_days=luxury_cars_next_60_days[luxury_cars_next_60_days['vehicle_info.group']=='Luxury')]
+luxury_cars_next_60_days=luxury_cars_next_60_days[luxury_cars_next_60_days['Category']=='Luxury']
 luxury_cars_next_60_days.to_pickle('Luxury_cars_next_60_days_df.pkl')
 
 
