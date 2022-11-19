@@ -65,6 +65,7 @@ def get_events(start_date = today_date, end_date = get_end_date(90), query_strin
     event_df['Dates'] = pd.to_datetime(event_df['Dates'])
     event_df = event_df.sort_values(by='Dates', ascending=True).reset_index(drop=True)
     event_df = event_df[(event_df['Dates'] > start_date) & (event_df['Dates'] <= end_date)]
+    event_df['Dates'] = event_df['Dates'].apply(lambda x: x.strftime('%Y-%m-%d'))
     #filter by query string if provided
     if query_string is not None:
       event_df = event_df.query(query_string, engine='python')
