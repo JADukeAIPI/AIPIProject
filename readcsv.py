@@ -30,6 +30,7 @@ def clean_and_sort_df(df):
     '''
     df_ATL = df[df.airportcity == 'Atlanta']
     df_ATL = df_ATL.rename(columns = {'location.city': 'city', 'location.country' : 'country', 'location.latitude' : 'latitude',  'vehicle.make' : 'make', 'vehicle.model' : 'model', 'vehicle.type' : 'type', 'vehicle.year' : 'year', 'rate.daily' : 'daily_rate'})
+    df_ATL['Vehicle_Name'] = df_ATL.agg(lambda x: f"{x['make']} {x['model']}", axis=1)
     return df_ATL
 
 df_ATL = clean_and_sort_df(df)

@@ -20,7 +20,7 @@ def get_booking_data(start_date, end_date):
 	querystring = {"drop_off_longitude":"-84.419853","currency":"USD","sort_by":"recommended","drop_off_datetime":end_date + ' 15:00:00',"drop_off_latitude":"33.640411","from_country":"it","pick_up_longitude":"-84.419853","locale":"en-gb","pick_up_datetime":start_date + " 15:00:00","pick_up_latitude":"33.640411"}
 
 	headers = {
-		"X-RapidAPI-Key": "e2bfcb999amshb4c19de5b3c019ap1f1c11jsn1d16c1bf87d9",
+		"X-RapidAPI-Key": "0cfd2d729amshe352a932d496577p1d8962jsn17534db01b2c",
 		"X-RapidAPI-Host": "booking-com.p.rapidapi.com"}
 
 	response = requests.request("GET", url, headers=headers, params=querystring)
