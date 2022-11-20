@@ -14,3 +14,12 @@ line_chart = alt.Chart(df).mark_line().encode(
 )
 
 st.altair_chart(line_chart, use_container_width=True)
+
+# df.groupby('Vehicle_Name')['Price'].plot(legend=True)
+# plt.xlabel('Pick Up Date (YYYY-MM)')
+# plt.ylabel('Price ($)')
+# # plt.gca().xaxis.set_major_locator(mdate.MonthLocator())
+
+# pd.pivot_table(df.reset_index(),
+#                index='date', columns='Vehicle_Name', values='Price'
+#               ).plot(subplots=True)
