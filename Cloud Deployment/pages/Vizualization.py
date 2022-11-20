@@ -15,6 +15,14 @@ line_chart = alt.Chart(df).mark_line().encode(
 
 st.altair_chart(line_chart, use_container_width=True)
 
+df_model = pd.read_csv('./pages/Data/ModelData.csv')
+
+line_model = alt.Chart(df_model).mark_line().encode(
+    x= 'Ordinal Date',
+    y='Count',
+)
+
+st.altair_chart(line_model, use_container_width=True)
 # df.groupby('Vehicle_Name')['Price'].plot(legend=True)
 # plt.xlabel('Pick Up Date (YYYY-MM)')
 # plt.ylabel('Price ($)')
