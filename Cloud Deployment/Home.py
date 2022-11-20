@@ -10,7 +10,7 @@ import matplotlib.dates as mdates
 def deploy():
 
     st.title('Luxury Vehicle Rental Car Forecasting')
-    st.header('Justin Abernathy, Cindy Change, Christian Hollar, & Chad Miller')
+    st.header('Justin Abernathy, Cindy Chang, Christian Hollar, & Chad Miller')
     
     # Model 1 - Predict Price
     date_input = st.text_input('Enter Date:','YYYY-MM-DD Format')
