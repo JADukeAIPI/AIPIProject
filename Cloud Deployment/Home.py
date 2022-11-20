@@ -27,6 +27,15 @@ def deploy():
         st.write(f'Trend: {str(trend)}')
         st.write(f'Day of the Week: {day_of_week}')
         st.write(f'Score: {score}')
+
+        loaded_model = pickle.load(open('Models/luxury_price_model.pkl', 'rb'))
+        df_inputs = pd.read_csv('Data/Input_Price.csv')
+        df_inputs.set_index('Date',inplace=True)
+        pred_input = df_inputs.loc[df_inputs.index==date_input]
+        pred = loaded_model.predict(pred_input)
+        ans = str(round(pred[0],2))
+        
+        st.write(f'We predict the price will be ${ans}!')
     else:
         st.write('Waiting for input...')
 
@@ -48,6 +57,7 @@ def deploy():
         st.write(f'Average Price: {str(price_value)}')
         st.write(f'Mercedez-Benz: {str(mbenz_value)}')
         st.write(f'State Farm: {str(sfarm_value)}')
+
         loaded_model = pickle.load(open('Models/count_model.pkl', 'rb'))
         pred_input = np.array([price_value, score_value, d, mbenz_value,sfarm_value])
         pred_input = pred_input.reshape(1,5)
@@ -56,7 +66,6 @@ def deploy():
         baseline_count = get_baseline_count(date_input)
         ans = (pred[0] - baseline_count) / baseline_count * 100
         
-
         if(ans>0):
             ans = str(round(ans,2))+'%'
             st.write(f'We predict the demand will be {ans} greater than average!')
@@ -71,7 +80,7 @@ def deploy():
 def get_score(date):
     df_scores = pd.read_csv('Data/Score.csv')
     df_output = df_scores.loc[df_scores['Date']==date]
-    return df_output.Score[0]
+    return df_output.Score.values[0]
 
 def get_avg_price():
     df_model = pd.read_csv('Data/ModelData.csv')
@@ -80,12 +89,12 @@ def get_avg_price():
 def get_mercedes_benz(date):
     df_model = pd.read_csv('Data/ModelData.csv')
     df_model = df_model.loc[df_model['Date']==date]
-    return df_model['Mercedes-Benz Stadium'][0]
+    return df_model['Mercedes-Benz Stadium'].values[0]
 
 def get_state_farm(date):
     df_model = pd.read_csv('Data/ModelData.csv')
     df_model = df_model.loc[df_model['Date']==date]
-    return df_model['State Farm Arena'][0]
+    return df_model['State Farm Arena'].values[0]
 
 def get_baseline_count(date):
     df_model = pd.read_csv('Data/ModelData.csv')
