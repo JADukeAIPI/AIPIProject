@@ -15,7 +15,7 @@ def deploy():
     # Model 1 - Predict Price
     date_input = st.text_input('Enter Date:','YYYY-MM-DD Format')
 
-    if st.button('Predict Relative Price'):
+    if st.button('Predict Price'):
         pd_Date = pd.Timestamp(date_input)
 
         # Luxury Price Model Features
