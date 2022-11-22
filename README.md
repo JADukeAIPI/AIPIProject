@@ -35,7 +35,11 @@ In order to install the project correctly, you will only need to interact with 1
 
 How to Use the Project:
 
-After you've successfully run the db.ipynmb notebook and opened the web app, it's a very straight forward process. Select your desired date range within the streamlite application to see our estimate of demand needs in terms of car rentals.
+First, create a creds.py file containing your API key as follow
+   api = "yourAPIkey"
+
+Now you can access our stored database 
+After you've successfully run the db.ipynb notebook and opened the web app, it's a very straight forward process. Select your desired date range within the streamlite application to see our estimate of demand needs in terms of car rentals.
 
 Credits:
 
