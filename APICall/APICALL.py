@@ -5,6 +5,7 @@ import requests
 import matplotlib.pyplot as plt
 
 import requests
+import creds
 
 def api_request():
     url = "https://booking-com.p.rapidapi.com/v1/car-rental/search"
@@ -12,7 +13,7 @@ def api_request():
     querystring = {"drop_off_longitude":"-84.419853","currency":"USD","sort_by":"recommended","drop_off_datetime":"2023-01-03 19:00:00","drop_off_latitude":"33.640411","from_country":"it","pick_up_longitude":"-84.419853","locale":"en-gb","pick_up_datetime":"2023-01-01 19:00:00","pick_up_latitude":"33.640411"}
 
     headers = {
-	"X-RapidAPI-Key": "e2bfcb999amshb4c19de5b3c019ap1f1c11jsn1d16c1bf87d9",
+	"X-RapidAPI-Key": f"{creds.api_key}",
 	"X-RapidAPI-Host": "booking-com.p.rapidapi.com"
     }
 
