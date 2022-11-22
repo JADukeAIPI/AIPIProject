@@ -3,7 +3,7 @@
  Code project to predict luxury car rental demand. 
 
  Description:
- This project seeks to provide boutique rental car companies that specialize in luxury/exotic vehciles with an accurate demand forcast so they can better prepare their fleets. This is intended to be accomplished in a couple of ways. First, we utilize data sets from rental car APIs and historic rental car demand to determine the yearly seasonality, then we compare current demand against major social events that would promote high luxury car demand (e.g. major concerts, conventionss, and sporting events).
+ This project seeks to provide boutique rental car companies that specialize in luxury/exotic vehciles with an accurate demand forcast so they can better prepare their fleets. This is intended to be accomplished in a couple of ways. First, we compare current demand against against major social events that would promote high luxury car demand (e.g. major concerts, conventionss, and sporting events). Ideally, we would also utilize historic rental car demand to model the yearly seasonality, although our API sources do not provide past demand only information regarding future inventory. Historic data could be obtained through continued data collection over the next several months. Additionally, we model prices based on perceived demand related to holidays and major events. 
 
  How to Install:
  This repository is broken up into a number of files. There are jupyter notebooks. .py modules, a database, a streamlit webapp, and one included dataset. Catagorically, they are broken up as the following:
@@ -13,6 +13,7 @@
     LuxuryCarAPIMultipleDates.ipynb
     WebScrapingAtlantaEvents.ipynb
     readcsv.ipynb
+    EDA_and_modelling.ipynb
 
     Deployment Files (actuall files to run):
     db.ipynb
@@ -41,7 +42,7 @@ Credits:
 This project would not be possible if not for the following people:
 
 Cindy Chang - Project conception, APIs, and data cleaning
-Chad Miller - Webscrape king, modeling, and data cleaning
+Chad Miller - Webscraping, modeling, and data cleaning
 Christian Hollar - Streamlit app, APIs, and data cleaning
 Justin Abernathy - DB, APIs, and data cleaning
  
