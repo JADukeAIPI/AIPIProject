@@ -15,7 +15,7 @@
 
     After you have populated the database. Please run dbquery.ipynb. This file will extract data from the db and make various SQL queries. 
 
-    Additionally, open EDA_and_modeling.ipynb using the 'open in colab' link and select run all. This file will create all of the modeling inputs for our web application. 
+    Additionally, open EDA_and_modeling.ipynb in the ../Exploratory Analysis folder using the 'open in colab' link and select run all. This file will create all of the modeling inputs for our web application. 
 
     Lastly, open a terminal and navigate to ../Cloud Deployment/home.py and run "streamlit run home.py". This will open our web app and allow you to interact with it. 
 
