@@ -8,7 +8,8 @@ import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 
 def deploy():
-
+    # Home Page Deploy Function
+    # Title/Headings
     st.title('Luxury Vehicle Rental Car Forecasting')
     st.header('Justin Abernathy, Cindy Chang, Christian Hollar, & Chad Miller')
     
@@ -25,12 +26,12 @@ def deploy():
         number_of_week = pd_Date.day_of_week
         day_of_week = dt.strptime(date_input,'%Y-%m-%d').strftime('%A')
         score = get_score(date_input)
-
+        # User Display
         st.write(f'**Selected Date:** {date_input}')
         st.write(f'**Trend:** {str(trend)} :chart_with_upwards_trend:')
         st.write(f'**Day of the Week:** {day_of_week} :calendar:')
         st.write(f'**Score:** {score}')
-
+        # Model Interaction
         loaded_model = pickle.load(open('Models/luxury_price_model.pkl', 'rb'))
         df_inputs = pd.read_csv('Data/Input_Price.csv')
         df_inputs.set_index('Date',inplace=True)
@@ -47,7 +48,7 @@ def deploy():
         single_date = [date_input]
         single_date = pd.to_datetime(single_date)
         single_value = [pred[0]]
-        
+        # Visualization
         plt.plot(single_date,single_value,marker='x')
         plt.gca().xaxis.set_major_formatter(year_month_formatter) 
         plt.ylabel('Price ($)')
@@ -58,9 +59,9 @@ def deploy():
         st.write('Waiting for input...')
 
     # Model 2 - Predict Relative Demand
-    # date_input = st.text_input('Enter Date:','YYYY-MM-DD Format')
 
     if st.button('Predict Relative Demand'):
+        # Time Data Processing
         d = dt.strptime(date_input, '%Y-%m-%d').date()
         d = d.toordinal()
         pd_Date = pd.Timestamp(date_input)
@@ -74,6 +75,7 @@ def deploy():
         st.write(f'**Selected Date:** {str(date_input)}')
         st.write(f'**Average Price:** ${str(price_value)}')
 
+        # Conditional User Display
         if(mbenz_value == 1):
             st.write('There is an event at Mercedes-Benz Stadium :tada:')
         else:
@@ -83,7 +85,7 @@ def deploy():
             st.write('There is an event at State Farm Arena :tada:')
         else:
             st.write('There is NOT an event at State Farm Arena :x:')
-
+        # Model Interaction
         loaded_model = pickle.load(open('Models/count_model.pkl', 'rb'))
         pred_input = np.array([price_value, score_value, d, mbenz_value,sfarm_value])
         pred_input = pred_input.reshape(1,5)
@@ -91,7 +93,7 @@ def deploy():
 
         baseline_count = get_baseline_count(date_input)
         ans = (pred[0] - baseline_count) / baseline_count * 100
-        
+        # Output Model Conditional Display
         if(ans>0):
             ans = str(round(ans,2))+'%'
             st.write(f'We predict the demand will be **{ans}** greater than average!')
@@ -99,7 +101,7 @@ def deploy():
             ans = abs(ans)
             ans = str(round(ans,2))+'%'
             st.write(f'We predict the demand will be **{ans}** less than average!')
-    
+        # Output Data Processing
         df_model = pd.read_csv('Data/ModelData.csv')
         year_month_formatter = mdates.DateFormatter("%Y-%m")
         dates = pd.to_datetime(df_model['Date'])
@@ -107,7 +109,7 @@ def deploy():
         single_date = [date_input]
         single_date = pd.to_datetime(single_date)
         single_value = [pred[0]]
-        
+        # Visualization
         plt.plot(single_date,single_value,marker='x')
         plt.gca().xaxis.set_major_formatter(year_month_formatter) 
         plt.ylabel('Number of Luxury Vehicles Actively Rented')
@@ -121,25 +123,26 @@ def deploy():
 
 
 # Model Methods
+# Score Data Call
 def get_score(date):
     df_scores = pd.read_csv('Data/Score.csv')
     df_output = df_scores.loc[df_scores['Date']==date]
     return df_output.Score.values[0]
-
+# Avg Price Call
 def get_avg_price():
     df_model = pd.read_csv('Data/ModelData.csv')
     return df_model['Average Price'].mean()
-
+# Mercedes Benz Schedule Call
 def get_mercedes_benz(date):
     df_model = pd.read_csv('Data/ModelData.csv')
     df_model = df_model.loc[df_model['Date']==date]
     return df_model['Mercedes-Benz Stadium'].values[0]
-
+# State Farm Schedule Call
 def get_state_farm(date):
     df_model = pd.read_csv('Data/ModelData.csv')
     df_model = df_model.loc[df_model['Date']==date]
     return df_model['State Farm Arena'].values[0]
-
+# Baseline Demand Calculation
 def get_baseline_count(date):
     df_model = pd.read_csv('Data/ModelData.csv')
     return df_model['Count'].mean()
